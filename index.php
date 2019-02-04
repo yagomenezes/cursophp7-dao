@@ -45,10 +45,21 @@ echo $aluno;
 */
 
 //Alterando um usuário
+/*
 $usuario = new Usuario();
 
 $usuario->loadById(7);
 $usuario->update("professor", "!@#$%¨&*");
+
+echo $usuario;
+*/
+
+//Deletar um usuário
+$usuario = new Usuario();
+
+$usuario->loadById(7);
+
+$usuario->delete();
 
 echo $usuario;
 

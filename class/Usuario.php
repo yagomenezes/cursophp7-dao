@@ -150,13 +150,29 @@ class Usuario
 		$this->setDeslogin($login);
 		$this->setDessenha($password);
 
+		$query = "UPDATE tb_usuarios SET deslogin = :LOGIN, dessenha = :PASSWORD WHERE idusuario = :ID";
+
 		$sql = new Sql();
 
-		$sql->query("UPDATE tb_usuarios SET deslogin = :LOGIN, dessenha = :PASSWORD where idusuario = :ID", array(
+		$sql->query($query, array(
 			':LOGIN'=>$this->getDeslogin(),
 			':PASSWORD'=>$this->getDessenha(),
 			':ID'=>$this->getIdusuario()
 		));
+	}
+
+	public function delete()
+	{
+		$query = "DELETE FROM tb_usuarios WHERE idusuario = :ID";
+
+		$sql = new Sql();
+
+		$sql->query($query, array(':ID'=>$this->getIdusuario()));
+
+		$this->setIdusuario(0);
+		$this->setDeslogin("");
+		$this->setDessenha("");
+		$this->setDtcadastro(new DateTime());
 	}
 }
 
